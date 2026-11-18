@@ -37,6 +37,9 @@ class PortfolioRequestHandler(SimpleHTTPRequestHandler):
                 self.wfile.write(b'{}')
             return
         
+        if parsed.path in ('/', ''):
+            self.path = '/main.html'
+
         # Default static file handling
         super().do_GET()
 

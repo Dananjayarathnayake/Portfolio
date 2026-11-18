@@ -6,7 +6,7 @@ A high-performance personal portfolio website inspired by [xlrrr8.github.io/Aary
 
 ## 🚀 Live Demo & Structure
 
-- **Portfolio Site (`index.html`)**: The public portfolio featuring smooth Lenis scrolling, GSAP micro-animations, theme color switcher, projects accordion, blog reader, and interactive timeline.
+- **Portfolio Site (`main.html`)**: The public portfolio featuring smooth Lenis scrolling, GSAP micro-animations, theme color switcher, projects accordion, blog reader, and interactive timeline.
 - **Admin Dashboard (`admin.html`)**: A private control center to edit texts, upload portraits, write blog articles, add projects, and sync changes live.
 
 > **Note**: For privacy and clean aesthetics, no "Admin" button is displayed to public visitors on the portfolio. You can access the dashboard directly via `yourdomain.com/admin.html` or by pressing `Ctrl + Shift + A` (or `Cmd + Shift + A` on Mac).
@@ -16,13 +16,16 @@ A high-performance personal portfolio website inspired by [xlrrr8.github.io/Aary
 ## 📁 Project Contents
 
 ```text
-├── index.html                   # Main public portfolio website
+├── main.html                    # Main public portfolio website
+├── index.html                   # Tiny redirect -> main.html (so the GitHub Pages root URL works)
 ├── admin.html                   # Private CMS & Admin Dashboard
 ├── styles.css                   # Core styling, dark glassmorphism, animations
 ├── blog_styles.css              # Blog grid, article reader modal, and tag styling
 ├── admin.css                    # Admin control center styling
 ├── script.js                    # Smooth scrolling, GSAP parallax, theme switcher
 ├── portfolio_cms.js             # Real-time data loader & cross-tab sync engine
+├── auth-config.js               # Admin username + password hash (edit this!)
+├── admin_auth.js                # Admin login screen logic
 ├── admin.js                     # Admin dashboard logic, image upload, GitHub sync
 ├── portfolio_data.json          # Master data file (Hero, About, Projects, Blog, Contact)
 ├── server.py                    # Lightweight Python backend server (optional for local/VPS)
@@ -52,10 +55,10 @@ python server.py
 ```
 
 Then open:
-- **Live Portfolio**: `http://localhost:8080/index.html`
+- **Live Portfolio**: `http://localhost:8080/main.html`
 - **Admin Dashboard**: `http://localhost:8080/admin.html`
 
-*(You can also simply double-click `index.html` or `admin.html` in any browser!)*
+*(You can also simply double-click `main.html` or `admin.html` in any browser!)*
 
 ---
 
@@ -107,6 +110,17 @@ When you open `https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/admin.html`, you h
 ### Method 3: Instant Local & Browser Sync
 - When you click **Save All Changes**, the updates are instantly cached in `localStorage` and sent to `server.py` (if running).
 - If your portfolio tab is open, it updates live in real time without reloading!
+
+---
+
+## 🔐 Admin Login
+
+Opening `admin.html` shows a login screen first.
+
+- **Default login:** username `admin` / password `admin123`
+- **Change the password (do this before publishing):** log in, click the 🔑 key button in the top bar, type a new password, then paste the generated `passwordHash` line into `auth-config.js` and commit.
+- Session lasts 2 hours, 5 wrong tries locks the form for 5 minutes, and the **Logout** button ends the session.
+- GitHub Pages is a static host, so this login is a front-end gate. Real protection for publishing is your GitHub token, which only you hold. Never commit your token to the repo.
 
 ---
 
