@@ -1,0 +1,179 @@
+{
+  "theme": {
+    "accent": "#9d4edd",
+    "bgType": "purple_doodle",
+    "bgImage": "assets/doodle_purple_ambient.png"
+  },
+  "hero": {
+    "greetingHi": "Hi",
+    "greetingIm": "I'm",
+    "nameFirst": "Aaryan",
+    "nameLast": "Ningdhalli",
+    "roles": [
+      "UI/UX Designer",
+      "Web Developer"
+    ],
+    "roleTag": "UI/UX DESIGNER",
+    "roleMainLine1": "WEB",
+    "roleMainLine2": "DEVELOPER",
+    "bio": "I blend structured engineering with visual storytelling to build immersive, responsive web experiences. Specializing in AI/ML integration and minimalist UI/UX design.",
+    "resumeUrl": "resume.pdf",
+    "profileImage": "profile.png"
+  },
+  "about": {
+    "titleLine1": "ABOUT",
+    "titleLine2": "ME.",
+    "rotatingWords": [
+      "Engineer.",
+      "Designer.",
+      "Problem Solver."
+    ],
+    "portraitImage": "about-profile.png",
+    "bioParagraph1": "I am an engineer and designer focused on crafting modern, intuitive digital products. With an eye for minimalist typography and clean systems, I bridge the gap between complex software and seamless human experience.",
+    "bioParagraph2": "From full-stack development to modern generative AI experiences, I focus on performance, accessibility, and high visual craft.",
+    "quote": "Design is not just what it looks like and feels like. Design is how it works.",
+    "stats": [
+      {
+        "number": "5+",
+        "label": "Projects Completed"
+      },
+      {
+        "number": "2+",
+        "label": "Years Coding"
+      },
+      {
+        "number": "100%",
+        "label": "Commitment to Craft"
+      }
+    ],
+    "languages": [
+      {
+        "name": "English",
+        "level": "Fluent"
+      },
+      {
+        "name": "Hindi",
+        "level": "Fluent"
+      },
+      {
+        "name": "Kannada",
+        "level": "Native"
+      },
+      {
+        "name": "Telugu",
+        "level": "Conversational"
+      }
+    ]
+  },
+  "projects": [
+    {
+      "id": "deepfake-detector",
+      "title": "Deepfake Video & Audio Detector",
+      "category": "AI / ML",
+      "badge": "Featured",
+      "description": "An end-to-end multi-modal deep learning platform utilizing convolutional recurrent neural networks to identify synthetic manipulations in media with 94.2% accuracy.",
+      "image": "deepfake_detect_bg.png",
+      "tags": [
+        "Python",
+        "PyTorch",
+        "OpenCV",
+        "Flask"
+      ],
+      "liveUrl": "#",
+      "githubUrl": "https://github.com/xlrrr8"
+    },
+    {
+      "id": "voice-library",
+      "title": "Voice Synthesis Library & Studio",
+      "category": "AI / Voice",
+      "badge": "Latest",
+      "description": "Real-time low-latency neural speech synthesis workstation allowing granular pitch modulation and emotional inflection mapping.",
+      "image": "voice_library_bg.png",
+      "tags": [
+        "React",
+        "FastAPI",
+        "Web Audio API",
+        "PyTorch"
+      ],
+      "liveUrl": "#",
+      "githubUrl": "https://github.com/xlrrr8"
+    },
+    {
+      "id": "birthday-beacon",
+      "title": "Birthday Beacon Automated Scheduler",
+      "category": "Web Application",
+      "badge": "Live Project",
+      "description": "Cloud-native cron notification platform with customizable animated e-greeting cards and dynamic messaging pipelines.",
+      "image": "birthday_beacon_bg.png",
+      "tags": [
+        "Next.js",
+        "Node.js",
+        "TailwindCSS",
+        "MongoDB"
+      ],
+      "liveUrl": "https://birthday-beacon.vercel.app/",
+      "githubUrl": "https://github.com/xlrrr8"
+    },
+    {
+      "id": "rate-your-day",
+      "title": "Rate Your Day Mood & Journaling App",
+      "category": "Full Stack",
+      "badge": "Mobile First",
+      "description": "Minimalist cognitive behavioral journal with automated sentiment scoring, weekly mood analytics, and end-to-end encrypted local storage.",
+      "image": "rate_your_day_bg.png",
+      "tags": [
+        "TypeScript",
+        "React Native",
+        "Chart.js",
+        "Express"
+      ],
+      "liveUrl": "https://ryd-app.onrender.com",
+      "githubUrl": "https://github.com/xlrrr8"
+    }
+  ],
+  "blog": [
+    {
+      "id": "spatial-web-experiences",
+      "title": "Designing Modern Spatial Web Experiences with GSAP and Lenis",
+      "category": "UI/UX Design",
+      "date": "Nov 15, 2026",
+      "readTime": "5 min read",
+      "excerpt": "How physics-based scroll scrubbing, micro-interactions, and 3D layer depth elevate digital portfolios into cinematic experiences.",
+      "image": "assets/doodle_purple.jpg",
+      "author": "Aaryan Ningdhalli",
+      "content": "Modern portfolio design has evolved far beyond standard responsive column grids. In 2026, user engagement hinges on fluid interactive micro-moments. Combining GSAP ScrollTrigger with smooth inertia libraries like Lenis lets designers synchronize visual storytelling with user scroll velocity without sacrificing 60fps performance."
+    },
+    {
+      "id": "organic-contour-branding",
+      "title": "The Power of Custom Ambient Shaders & Organic Doodle Patterns",
+      "category": "Design Systems",
+      "date": "Nov 02, 2026",
+      "readTime": "4 min read",
+      "excerpt": "Why organic doodle typography and contoured ambient textures create memorable brand identity in modern digital craft.",
+      "image": "assets/doodle_bg.jpg",
+      "author": "Aaryan Ningdhalli",
+      "content": "Clean geometric lines often run the risk of sterile repetition. By contrasting ultra-sharp typography with flowing, hand-drawn organic contour doodle layers, a designer creates a signature artistic personality that stands apart from boilerplate templates."
+    },
+    {
+      "id": "ai-ml-in-web-apps",
+      "title": "Bridging Deep Learning Inference with Responsive Frontend UIs",
+      "category": "AI / ML",
+      "date": "Oct 24, 2026",
+      "readTime": "6 min read",
+      "excerpt": "Architectural strategies for streaming on-device neural model inference directly into reactive browser interfaces.",
+      "image": "deepfake_detect_bg.png",
+      "author": "Aaryan Ningdhalli",
+      "content": "Deploying machine learning models to the web traditionally meant high backend compute costs and sluggish latency. WebAssembly and WebGPU are changing that paradigm, allowing client-side inference directly inside the browser canvas."
+    }
+  ],
+  "contact": {
+    "email": "itzaaryan360@gmail.com",
+    "phone": "+91 (Available on request)",
+    "location": "Hyderabad, India",
+    "github": "https://github.com/xlrrr8",
+    "linkedin": "https://www.linkedin.com/in/aaryan-ningdhalli/",
+    "instagram": "https://www.instagram.com/iem.aaryan",
+    "pinterest": "https://in.pinterest.com/itztogi/_pins/",
+    "chess": "https://www.chess.com/member/aarya-49"
+  }
+}

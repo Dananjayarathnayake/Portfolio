@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Admin Dashboard | Aaryan Sama</title>
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-wrapper">
+        <!-- Top Control Bar -->
+        <header class="admin-topbar">
+            <div class="topbar-left">
+                <div class="admin-logo">
+                    <span class="logo-circle"></span>
+                    <span class="logo-text">PORTFOLIO CMS</span>
+                </div>
+                <div class="status-badge" id="serverStatus">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Server Connected</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <button class="btn-secondary" id="exportDataBtn" title="Download updated portfolio_data.json to upload or commit to GitHub">
+                    <i class="fa-solid fa-download"></i>
+                    <span>Export JSON</span>
+                </button>
+                <a href="index.html" class="btn-secondary" target="_blank">
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                    <span>View Live Site</span>
+                </a>
+                <button class="btn-primary" id="saveAllBtn">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <span>Save All Changes</span>
+                </button>
+            </div>
+        </header>
+
+        <div class="admin-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="admin-sidebar">
+                <nav class="sidebar-nav">
+                    <button class="nav-item active" data-tab="tab-hero">
+                        <i class="fa-solid fa-house"></i>
+                        <span>Hero & Branding</span>
+                    </button>
+                    <button class="nav-item" data-tab="tab-about">
+                        <i class="fa-solid fa-user"></i>
+                        <span>About Section</span>
+                    </button>
+                    <button class="nav-item" data-tab="tab-theme">
+                        <i class="fa-solid fa-palette"></i>
+                        <span>Background & Theme</span>
+                    </button>
+                    <button class="nav-item" data-tab="tab-projects">
+                        <i class="fa-solid fa-briefcase"></i>
+                        <span>Projects</span>
+                    </button>
+                    <button class="nav-item" data-tab="tab-blog">
+                        <i class="fa-solid fa-newspaper"></i>
+                        <span>Blog Articles</span>
+                    </button>
+                    <button class="nav-item" data-tab="tab-contact">
+                        <i class="fa-solid fa-address-book"></i>
+                        <span>Contact & Socials</span>
+                    </button>
+                    <button class="nav-item" data-tab="tab-github">
+                        <i class="fa-brands fa-github"></i>
+                        <span>GitHub Live Sync</span>
+                    </button>
+                </nav>
+
+                <div class="sidebar-footer">
+                    <button class="btn-outline-danger" id="resetBtn">
+                        <i class="fa-solid fa-rotate-left"></i>
+                        <span>Reset to Defaults</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Main Content Panels -->
+            <main class="admin-main">
+                <!-- TAB 1: HERO & BRANDING -->
+                <section class="tab-panel active" id="tab-hero">
+                    <div class="panel-header">
+                        <h2>Hero & Branding Section</h2>
+                        <p>Configure the initial impression, greetings, names, and portrait cutout.</p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="admin-card">
+                            <h3 class="card-title">Typography & Names</h3>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Greeting Prefix</label>
+                                    <input type="text" id="heroGreetingHi" placeholder="e.g. Hi">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Greeting Suffix</label>
+                                    <input type="text" id="heroGreetingIm" placeholder="e.g. I'm">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>First Name</label>
+                                    <input type="text" id="heroNameFirst" placeholder="e.g. Aaryan">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Last Name</label>
+                                    <input type="text" id="heroNameLast" placeholder="e.g. Ningdhalli">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Small Role Pill / Tag</label>
+                                <input type="text" id="heroRoleTag" placeholder="e.g. UI/UX DESIGNER">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-6">
+                                    <label>Big Typography Line 1</label>
+                                    <input type="text" id="heroRoleMain1" placeholder="e.g. WEB">
+                                </div>
+                                <div class="form-group col-6">
+                                    <label>Big Typography Line 2</label>
+                                    <input type="text" id="heroRoleMain2" placeholder="e.g. DEVELOPER">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Hero Bio Narrative</label>
+                                <textarea id="heroBio" rows="4" placeholder="Brief introduction text..."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="admin-card">
+                            <h3 class="card-title">Hero Portrait Image</h3>
+                            <div class="image-upload-wrapper">
+                                <div class="preview-box">
+                                    <img id="heroPortraitPreview" src="profile.png" alt="Hero Portrait Preview">
+                                </div>
+                                <div class="upload-controls">
+                                    <label class="btn-file-upload">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        <span>Upload New Portrait</span>
+                                        <input type="file" id="heroPortraitUpload" accept="image/*">
+                                    </label>
+                                    <p class="help-text">Recommended: Transparent PNG or cutout portrait.</p>
+                                    <input type="text" id="heroPortraitPath" class="path-input" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: ABOUT SECTION -->
+                <section class="tab-panel" id="tab-about">
+                    <div class="panel-header">
+                        <h2>About Section</h2>
+                        <p>Customize the about text, philosophy quote, key metrics, and about portrait.</p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="admin-card">
+                            <h3 class="card-title">Narrative & Philosophy</h3>
+                            <div class="form-group">
+                                <label>Bio Paragraph 1</label>
+                                <textarea id="aboutBio1" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Bio Paragraph 2</label>
+                                <textarea id="aboutBio2" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Philosophy Quote</label>
+                                <input type="text" id="aboutQuote">
+                            </div>
+                        </div>
+
+                        <div class="admin-card">
+                            <h3 class="card-title">About Portrait Image</h3>
+                            <div class="image-upload-wrapper">
+                                <div class="preview-box">
+                                    <img id="aboutPortraitPreview" src="about-profile.png" alt="About Portrait Preview">
+                                </div>
+                                <div class="upload-controls">
+                                    <label class="btn-file-upload">
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                                        <span>Upload About Portrait</span>
+                                        <input type="file" id="aboutPortraitUpload" accept="image/*">
+                                    </label>
+                                    <p class="help-text">Used in the glowing circular frame in the About section.</p>
+                                    <input type="text" id="aboutPortraitPath" class="path-input" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 3: BACKGROUND & THEME -->
+                <section class="tab-panel" id="tab-theme">
+                    <div class="panel-header">
+                        <h2>Background & Theme Studio</h2>
+                        <p>Select the signature background texture and active accent palette.</p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="admin-card">
+                            <h3 class="card-title">Ambient Background Texture</h3>
+                            <p class="card-subtitle">Choose from your uploaded custom doodle designs or upload a new one:</p>
+                            
+                            <div class="bg-selector-grid">
+                                <label class="bg-option-card">
+                                    <input type="radio" name="bgPatternOption" value="assets/doodle_purple_ambient.png" id="bgOptPurple">
+                                    <div class="bg-card-content">
+                                        <div class="bg-thumb" style="background-image: url('assets/doodle_purple.jpg');"></div>
+                                        <div class="bg-info">
+                                            <strong>Purple Organic Doodle</strong>
+                                            <span>Latest photoshoot wallpaper</span>
+                                        </div>
+                                    </div>
+                                </label>
+
+                                <label class="bg-option-card">
+                                    <input type="radio" name="bgPatternOption" value="cinematic_tech_bg.png" id="bgOptLime">
+                                    <div class="bg-card-content">
+                                        <div class="bg-thumb" style="background-image: url('assets/doodle_bg.jpg');"></div>
+                                        <div class="bg-info">
+                                            <strong>Lime Neon Contour</strong>
+                                            <span>Cyber lime organic doodle</span>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="custom-bg-upload" style="margin-top: 20px;">
+                                <label class="btn-file-upload">
+                                    <i class="fa-solid fa-image"></i>
+                                    <span>Upload Custom Background Wallpaper</span>
+                                    <input type="file" id="customBgUpload" accept="image/*">
+                                </label>
+                                <input type="text" id="customBgPath" class="path-input" readonly placeholder="Active background image path">
+                            </div>
+                        </div>
+
+                        <div class="admin-card">
+                            <h3 class="card-title">Default Accent Color</h3>
+                            <p class="card-subtitle">Select the default primary neon color:</p>
+                            <div class="color-swatches-grid">
+                                <button type="button" class="admin-swatch" data-color="#9d4edd" style="--swatch:#9d4edd;" title="Ultraviolet Doodle"></button>
+                                <button type="button" class="admin-swatch" data-color="#b4ff00" style="--swatch:#b4ff00;" title="Cyber Lime"></button>
+                                <button type="button" class="admin-swatch" data-color="#0056ff" style="--swatch:#0056ff;" title="Electric Blue"></button>
+                                <button type="button" class="admin-swatch" data-color="#10b981" style="--swatch:#10b981;" title="Emerald"></button>
+                                <button type="button" class="admin-swatch" data-color="#f43f5e" style="--swatch:#f43f5e;" title="Rose"></button>
+                                <button type="button" class="admin-swatch" data-color="#e07252" style="--swatch:#e07252;" title="Terracotta"></button>
+                            </div>
+                            <div class="form-group" style="margin-top: 20px;">
+                                <label>Hex Color Code</label>
+                                <input type="text" id="themeAccentHex" value="#9d4edd">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 4: PROJECTS -->
+                <section class="tab-panel" id="tab-projects">
+                    <div class="panel-header">
+                        <h2>Projects Manager</h2>
+                        <button class="btn-primary" id="addNewProjectBtn">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>Add New Project</span>
+                        </button>
+                    </div>
+
+                    <div class="project-list" id="projectsContainer">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 5: BLOG ARTICLES -->
+                <section class="tab-panel" id="tab-blog">
+                    <div class="panel-header">
+                        <h2>Blog & Insights Manager</h2>
+                        <button class="btn-primary" id="addNewBlogBtn">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                            <span>Write New Article</span>
+                        </button>
+                    </div>
+
+                    <div class="blog-articles-list" id="blogArticlesContainer">
+                        <!-- Rendered dynamically -->
+                    </div>
+                </section>
+
+                <!-- TAB 6: CONTACT & SOCIALS -->
+                <section class="tab-panel" id="tab-contact">
+                    <div class="panel-header">
+                        <h2>Contact & Social Links</h2>
+                        <p>Update communication channels, email, and social networks.</p>
+                    </div>
+
+                    <div class="admin-card">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Direct Email</label>
+                                <input type="email" id="contactEmail">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Location</label>
+                                <input type="text" id="contactLocation">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>GitHub Profile URL</label>
+                                <input type="url" id="contactGithub">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>LinkedIn Profile URL</label>
+                                <input type="url" id="contactLinkedin">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label>Instagram URL</label>
+                                <input type="url" id="contactInstagram">
+                            </div>
+                            <div class="form-group col-6">
+                                <label>Pinterest URL</label>
+                                <input type="url" id="contactPinterest">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Chess.com URL</label>
+                            <input type="url" id="contactChess">
+                        </div>
+                    </div>
+                </section>
+                            <!-- TAB 7: GITHUB LIVE SYNC -->
+                <section class="tab-panel" id="tab-github">
+                    <div class="panel-header">
+                        <h2>GitHub Live Site Sync</h2>
+                        <p>Publish updates directly to your live GitHub Pages repository from this dashboard without command line.</p>
+                    </div>
+
+                    <div class="card-grid">
+                        <div class="admin-card">
+                            <h3 class="card-title">GitHub Repository Settings</h3>
+                            <p class="card-subtitle">Connect your repository to push live portfolio updates automatically:</p>
+                            
+                            <div class="form-group">
+                                <label>GitHub Repository (owner/repo)</label>
+                                <input type="text" id="ghRepo" placeholder="e.g. xlrrr8/Aaryansama">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Branch</label>
+                                <input type="text" id="ghBranch" placeholder="main (or gh-pages)" value="main">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Personal Access Token (PAT)</label>
+                                <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+                                <p class="help-text" style="text-align:left; margin-top:6px;">
+                                    Token is stored securely only in your browser's local storage. Needs <code>repo</code> scope permission.
+                                </p>
+                            </div>
+
+                            <div style="display:flex; gap:12px; margin-top:24px;">
+                                <button class="btn-primary" id="publishGhBtn" style="flex:1;">
+                                    <i class="fa-brands fa-github"></i>
+                                    <span>Publish to GitHub Live Site</span>
+                                </button>
+                                <button class="btn-secondary" id="saveGhConfigBtn">
+                                    <i class="fa-solid fa-check"></i>
+                                    <span>Save Token</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="admin-card">
+                            <h3 class="card-title">How Live Updates Work</h3>
+                            <div style="font-size:0.92rem; line-height:1.7; color:var(--text-secondary);">
+                                <p style="margin-bottom:14px;"><strong style="color:var(--text-primary);"><i class="fa-solid fa-bolt" style="color:var(--accent);"></i> Method 1: Instant Local / Browser Sync</strong><br>
+                                Whenever you click <em>Save All Changes</em>, your site updates in real-time in your browser and on your local server. If your portfolio tab is open, it updates live!</p>
+
+                                <p style="margin-bottom:14px;"><strong style="color:var(--text-primary);"><i class="fa-brands fa-github" style="color:var(--accent);"></i> Method 2: Direct GitHub API Publish</strong><br>
+                                Add your GitHub Token and Repo name above, then click <em>Publish to GitHub Live Site</em>. It automatically commits the new <code>portfolio_data.json</code> directly to GitHub, updating your live site for all visitors worldwide!</p>
+
+                                <p><strong style="color:var(--text-primary);"><i class="fa-solid fa-file-arrow-down" style="color:var(--accent);"></i> Method 3: One-Click JSON Export</strong><br>
+                                Click the <em>Export JSON</em> button in the top bar to download your updated <code>portfolio_data.json</code> file, and drag it into your GitHub repo anytime.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- Edit Project Modal -->
+    <div class="admin-modal" id="projectModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="projectModalTitle">Edit Project</h3>
+                <button class="modal-close-btn" id="closeProjectModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editProjIndex" value="-1">
+                <div class="form-group">
+                    <label>Project Title</label>
+                    <input type="text" id="editProjTitle">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label>Category (e.g. AI / ML)</label>
+                        <input type="text" id="editProjCategory">
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Badge (e.g. Featured, Live)</label>
+                        <input type="text" id="editProjBadge">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="editProjDesc" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Tech Stack Tags (comma-separated)</label>
+                    <input type="text" id="editProjTags" placeholder="Python, PyTorch, React">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label>Live URL</label>
+                        <input type="text" id="editProjLive">
+                    </div>
+                    <div class="form-group col-6">
+                        <label>GitHub URL</label>
+                        <input type="text" id="editProjGithub">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Project Cover Image</label>
+                    <div class="modal-img-upload">
+                        <div class="modal-thumb-preview">
+                            <img id="editProjImgPreview" src="" alt="Thumbnail">
+                        </div>
+                        <label class="btn-file-upload">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Upload Image</span>
+                            <input type="file" id="editProjImgUpload" accept="image/*">
+                        </label>
+                        <input type="text" id="editProjImgPath" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelProjectBtn">Cancel</button>
+                <button class="btn-primary" id="saveProjectBtn">Save Project</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Blog Article Modal -->
+    <div class="admin-modal" id="blogModalEditor">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="blogEditorModalTitle">Write Article</h3>
+                <button class="modal-close-btn" id="closeBlogEditorModal"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="editBlogIndex" value="-1">
+                <div class="form-group">
+                    <label>Article Title</label>
+                    <input type="text" id="editBlogTitle">
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-6">
+                        <label>Category</label>
+                        <input type="text" id="editBlogCategory" placeholder="e.g. UI/UX Design, Web Dev">
+                    </div>
+                    <div class="form-group col-6">
+                        <label>Read Time</label>
+                        <input type="text" id="editBlogReadTime" placeholder="e.g. 5 min read">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Excerpt / Summary</label>
+                    <textarea id="editBlogExcerpt" rows="2"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Full Content (Markdown or Paragraphs)</label>
+                    <textarea id="editBlogContent" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Cover Image</label>
+                    <div class="modal-img-upload">
+                        <div class="modal-thumb-preview">
+                            <img id="editBlogImgPreview" src="" alt="Cover Preview">
+                        </div>
+                        <label class="btn-file-upload">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                            <span>Upload Cover</span>
+                            <input type="file" id="editBlogImgUpload" accept="image/*">
+                        </label>
+                        <input type="text" id="editBlogImgPath" readonly>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" id="cancelBlogBtn">Cancel</button>
+                <button class="btn-primary" id="saveBlogBtn">Save Article</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="admin-toast" id="adminToast">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toastMsg">Changes saved successfully!</span>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
